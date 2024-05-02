@@ -1,5 +1,6 @@
 package com.pinheiro.evento.entities;
 
+import com.pinheiro.evento.dtos.EventRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,4 +21,12 @@ public class Event {
     private String date;
     private String title;
     private String description;
+
+    public Event(EventRequestDTO dto){
+        this.date = dto.date();
+        this.maxParticipants = dto.maxParticipants();
+        this.registeredParticipants = dto.registeredParticipants();
+        this.title = dto.title();
+        this.description = dto.description();
+    }
 }
