@@ -23,7 +23,6 @@ public class Event {
     private String description;
 
     public Event(EventRequestDTO eventRequestDTO) {
-        this.id = eventRequestDTO.id();
         this.maxParticipants = eventRequestDTO.maxParticipants();
         this.registeredParticipants = eventRequestDTO.registeredParticipants();
         this.date = eventRequestDTO.date();
