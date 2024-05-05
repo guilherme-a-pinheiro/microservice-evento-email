@@ -4,8 +4,8 @@ import com.pinheiro.evento.dtos.EventRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity(name="event")
-@Table(name="event")
+@Entity(name="events")
+@Table(name="events")
 @Getter
 @Setter
 @AllArgsConstructor

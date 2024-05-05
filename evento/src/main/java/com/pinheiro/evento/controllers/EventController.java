@@ -20,6 +20,11 @@ public class EventController {
         return service.findAll();
     }
 
+    @GetMapping("/upcoming")
+    public List<Event> getUpcomingEvents(){
+        return service.getUpcomingEvents();
+    }
+
     @PostMapping
     public Event createEvent(@RequestBody EventRequestDTO newEvent){
         return service.createEvent(newEvent);
