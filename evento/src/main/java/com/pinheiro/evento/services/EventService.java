@@ -34,7 +34,7 @@ public class EventService {
         return eventRepository.findUpcomingEvent(LocalDateTime.now());
     }
 
-    public Event createEvent(EventRequestDTO eventRequest){
+    public Event createEvent(EventRequestDTO eventRequest) {
         Event newEvent = new Event(eventRequest);
         return eventRepository.save(newEvent);
     }

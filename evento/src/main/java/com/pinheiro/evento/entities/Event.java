@@ -4,13 +4,13 @@ import com.pinheiro.evento.dtos.EventRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity(name = "event")
-@Table(name = "events")
-@AllArgsConstructor
-@NoArgsConstructor
+@Entity(name="event")
+@Table(name="event")
 @Getter
 @Setter
-@EqualsAndHashCode(of = "id")
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(of="id")
 public class Event {
 
     @Id
@@ -22,11 +22,13 @@ public class Event {
     private String title;
     private String description;
 
-    public Event(EventRequestDTO dto){
-        this.date = dto.date();
-        this.maxParticipants = dto.maxParticipants();
-        this.registeredParticipants = dto.registeredParticipants();
-        this.title = dto.title();
-        this.description = dto.description();
+    public Event(EventRequestDTO eventRequestDTO) {
+        this.id = eventRequestDTO.id();
+        this.maxParticipants = eventRequestDTO.maxParticipants();
+        this.registeredParticipants = eventRequestDTO.registeredParticipants();
+        this.date = eventRequestDTO.date();
+        this.title = eventRequestDTO.title();
+        this.description = eventRequestDTO.description();
     }
 }
+
