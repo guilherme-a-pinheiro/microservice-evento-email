@@ -26,34 +26,37 @@ public class EventService {
     @Autowired
     private EmailServiceClient emailServiceClient;
 
-    public List<Event> findAll(){
+    public List<Event> getAllEvents() {
         return eventRepository.findAll();
     }
 
-    public List<Event> getUpcomingEvents(){
-        return eventRepository.findUpcomingEvent(LocalDateTime.now());
+    public List<Event> getUpcomingEvents() {
+        return eventRepository.findUpcomingEvents(LocalDateTime.now());
     }
 
-    public Event createEvent(EventRequestDTO eventRequest){
+    public Event createEvent(EventRequestDTO eventRequest) {
         Event newEvent = new Event(eventRequest);
         return eventRepository.save(newEvent);
     }
 
-    public void registerParticipant(String eventId, String participantEmail){
+    private Boolean isEventFull(Event event){
+        return event.getRegisteredParticipants() >= event.getMaxParticipants();
+    }
+
+    public void registerParticipant(String eventId, String participantEmail) {
         Event event = eventRepository.findById(eventId).orElseThrow(EventNotFoundException::new);
 
-            if(event.getRegisteredParticipants() >= event.getMaxParticipants()){
-                throw new EventFullException();
-            }
-            
-            Subscription subscription = new Subscription(event, participantEmail);
+        if(isEventFull(event)) {
+            throw new EventFullException();
+        }
 
-            subscriptionRepository.save(subscription);
+        Subscription subscription = new Subscription(event, participantEmail);
+        subscriptionRepository.save(subscription);
 
-            event.setRegisteredParticipants(event.getRegisteredParticipants() + 1);
+        event.setRegisteredParticipants(event.getRegisteredParticipants() + 1);
 
-            EmailRequestDTO emailRequest = new EmailRequestDTO(participantEmail, "Confirmação de inscrição", "Você foi inscrito no evento com sucesso!");
+        EmailRequestDTO emailRequest = new EmailRequestDTO(participantEmail, "Confirmação de Inscrição", "Você foi inscrito no evento com sucesso!");
 
-            emailServiceClient.sendEmail(emailRequest);
+        emailServiceClient.sendEmail(emailRequest);
     }
 }
