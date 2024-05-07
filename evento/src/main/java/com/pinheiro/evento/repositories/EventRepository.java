@@ -13,8 +13,13 @@ import java.util.Optional;
 
 public interface EventRepository extends JpaRepository<Event, String> {
 
+<<<<<<< HEAD
     @Query(value = "SELECT * FROM event e WHERE parsedatetime(e.date, 'dd/MM/yyyy') > :currentDate", nativeQuery = true)
     List<Event> findUpcomingEvents(@Param("currentDate") LocalDateTime currentDate);
+=======
+    @Query(value = "SELECT * FROM events e WHERE parsedatetime(e.date, 'dd/MM/yyyy') >= :currentDate", nativeQuery = true)
+    List<Event> findUpcomingEvent(@Param("currentDate") LocalDateTime currentDate);
+>>>>>>> fa5548957222fd23503ab0c94e10434153d37672
 
     @Nonnull
     Optional<Event> findById(@Nonnull String id);

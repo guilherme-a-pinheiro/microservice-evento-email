@@ -4,9 +4,13 @@ import com.pinheiro.evento.dtos.EventRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
+<<<<<<< HEAD
 import java.util.UUID;
 
 @Entity(name = "events")
+=======
+@Entity(name="events")
+>>>>>>> fa5548957222fd23503ab0c94e10434153d37672
 @Table(name="events")
 @Getter
 @Setter
@@ -24,6 +28,7 @@ public class Event {
     private String title;
     private String description;
 
+<<<<<<< HEAD
     public Event(EventRequestDTO eventRequest){
         this.date = eventRequest.date();
         this.maxParticipants = eventRequest.maxParticipants();
@@ -32,3 +37,14 @@ public class Event {
         this.description = eventRequest.description();
     }
 }
+=======
+    public Event(EventRequestDTO eventRequestDTO) {
+        this.maxParticipants = eventRequestDTO.maxParticipants();
+        this.registeredParticipants = eventRequestDTO.registeredParticipants();
+        this.date = eventRequestDTO.date();
+        this.title = eventRequestDTO.title();
+        this.description = eventRequestDTO.description();
+    }
+}
+
+>>>>>>> fa5548957222fd23503ab0c94e10434153d37672
