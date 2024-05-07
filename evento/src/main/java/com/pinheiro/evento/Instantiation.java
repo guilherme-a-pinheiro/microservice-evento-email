@@ -1,7 +1,6 @@
 package com.pinheiro.evento;
 
 import com.pinheiro.evento.dtos.EventRequestDTO;
-import com.pinheiro.evento.entities.Event;
 import com.pinheiro.evento.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
