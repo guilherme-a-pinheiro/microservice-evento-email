@@ -54,6 +54,7 @@ public class EventService {
         subscriptionRepository.save(subscription);
 
         event.setRegisteredParticipants(event.getRegisteredParticipants() + 1);
+        eventRepository.save(event);
 
         EmailRequestDTO emailRequest = new EmailRequestDTO(participantEmail, "Confirmação de Inscrição", "Você foi inscrito no evento com sucesso!");
 
