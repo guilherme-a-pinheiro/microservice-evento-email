@@ -35,6 +35,6 @@ public class EventController {
     @PostMapping("/{eventId}/register")
     public ResponseEntity<String> registerParticipant(@PathVariable String eventId, @RequestBody SubscriptionRequestDTO subscriptionRequest) {
         eventService.registerParticipant(eventId, subscriptionRequest.participantEmail());
-        return ResponseEntity.ok("Event created successfully");
+        return ResponseEntity.ok("Subscription created successfully");
     }
 }
